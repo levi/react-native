@@ -519,7 +519,15 @@ static inline void RCTApplyTransformationAccordingLayoutDirection(UIView *view, 
   // Adjust the refresh control frame if the scrollview layout changes.
   RCTRefreshControl *refreshControl = _scrollView.rctRefreshControl;
   if (refreshControl && refreshControl.refreshing) {
-    refreshControl.frame = (CGRect){_scrollView.contentOffset, {_scrollView.frame.size.width, refreshControl.frame.size.height}};
+    CGPoint offset = CGPointMake(
+      _scrollView.bounds.size.width - _scrollView.frame.size.width,
+      _scrollView.bounds.size.height - _scrollView.frame.size.height
+    );
+    refreshControl.frame = (CGRect){
+      offset,
+      // _scrollView.contentOffset, 
+      {_scrollView.frame.size.width, refreshControl.frame.size.height}
+    };
   }
 #endif
 

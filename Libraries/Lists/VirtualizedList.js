@@ -150,6 +150,10 @@ type OptionalProps = {
    */
   onRefresh?: ?Function,
   /**
+   * Set this to true to move the refresh control to the bottom of the scroll
+   */
+  refreshFromBottom?: boolean,
+  /**
    * Used to handle failures when scrolling to an index that has not been measured yet. Recommended
    * action is to either compute your own offset and `scrollTo` it, or scroll as far as possible and
    * then try again after more items have been rendered.

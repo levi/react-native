@@ -51,6 +51,7 @@ class FlatListExample extends React.PureComponent<{}, $FlowFixMeState> {
     debug: false,
     horizontal: false,
     inverted: false,
+    refreshFromBottom: false,
     filterText: '',
     fixedHeight: true,
     logViewable: false,
@@ -108,6 +109,7 @@ class FlatListExample extends React.PureComponent<{}, $FlowFixMeState> {
               {renderSmallSwitchOption(this, 'fixedHeight')}
               {renderSmallSwitchOption(this, 'log')}
               {renderSmallSwitchOption(this, 'inverted')}
+              {renderSmallSwitchOption(this, 'refreshFromBottom')}
               {renderSmallSwitchOption(this, 'empty')}
               {renderSmallSwitchOption(this, 'debug')}
               <Spindicator value={this._scrollPos} />
@@ -137,6 +139,7 @@ class FlatListExample extends React.PureComponent<{}, $FlowFixMeState> {
             numColumns={1}
             onEndReached={this._onEndReached}
             onRefresh={this._onRefresh}
+            refreshFromBottom={this.state.refreshFromBottom}
             onScroll={
               this.state.horizontal ? this._scrollSinkX : this._scrollSinkY
             }

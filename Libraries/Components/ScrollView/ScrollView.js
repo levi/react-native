@@ -153,6 +153,7 @@ export type Props = $ReadOnly<{|
   snapToInterval?: ?number,
   removeClippedSubviews?: ?boolean,
   refreshControl?: ?React.Element<any>,
+  refreshFromBottom?: ?boolean,
   style?: ?ViewStyleProp,
   children?: React.Node,
 |}>;
@@ -558,6 +559,11 @@ const ScrollView = createReactClass({
      * See [RefreshControl](docs/refreshcontrol.html).
      */
     refreshControl: PropTypes.element,
+
+    /**
+     * TODO: Document
+     */
+    refreshFromBottom: PropTypes.bool,
 
     /**
      * Sometimes a scrollview takes up more space than its content fills. When this is
@@ -1035,13 +1041,14 @@ const ScrollView = createReactClass({
     const refreshControl = this.props.refreshControl;
 
     if (refreshControl) {
+      const refreshFromBottom = this.props.refreshFromBottom || false;
       if (Platform.OS === 'ios') {
+        const iOSRefreshControl = Platform.isTVOS ? null : refreshControl
         // On iOS the RefreshControl is a child of the ScrollView.
         // tvOS lacks native support for RefreshControl, so don't include it in that case
         return (
           // $FlowFixMe Invalid prop usage
           <ScrollViewClass {...props} ref={this._setScrollViewRef}>
-            {Platform.isTVOS ? null : refreshControl}
             {contentContainer}
           </ScrollViewClass>
         );

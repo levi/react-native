@@ -170,6 +170,10 @@ type OptionalProps<ItemT> = {
    */
   onRefresh?: ?() => void,
   /**
+   * Set this to true to move the refresh control to the bottom of the scroll
+   */
+  refreshFromBottom?: boolean,
+  /**
    * Called when the viewability of rows changes, as defined by the `viewabilityConfig` prop.
    */
   onViewableItemsChanged?: ?(info: {
